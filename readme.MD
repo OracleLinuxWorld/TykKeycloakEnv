@@ -16,5 +16,4 @@ TO BE COMPLETED
 TO BE COMPLETED
 
 ## background information
-TO BE COMPLETED
-[Keycloak background information](./doc/background/keycloak.md)
+* [Keycloak background information](./doc/background/keycloak.md)
