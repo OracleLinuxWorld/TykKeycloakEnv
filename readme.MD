@@ -12,7 +12,7 @@ The below deployment instructions are based upon two possible models. The first 
 ### generic Ansible deployment
 TO BE COMPLETED
 
-### local vagrant deployemnt
+### local vagrant deployment
 TO BE COMPLETED
 
 ## background information
