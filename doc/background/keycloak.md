@@ -2,7 +2,7 @@
 The following documentation is intended to provide generic information on Keycloak as well as links to documentation and some tips and tricks for things found during the initial phase of the project.
 
 ## generic information
-to be completed
+Keycloak is an open source Identity and Access Management solution aimed at modern applications and services. It makes it easy to secure applications and services with little to no code. More information on Keycloak can also be found at the [Keycloak website](https://www.keycloak.org).
 
 ## documentation links
 
