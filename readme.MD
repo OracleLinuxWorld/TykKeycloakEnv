@@ -17,3 +17,4 @@ TO BE COMPLETED
 
 ## background information
 TO BE COMPLETED
+[Keycloak background information](../blob/master/LICENSE)
