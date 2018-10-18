@@ -47,7 +47,7 @@
 
 ### Install Tyk dashboard
 - name: run Tyk dashboard setup script (hardcoded for now)
-  shell: /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=172.28.129.201 --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="172.28.129.201"
+  shell: /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="172.28.129.201"
 
 ### Enable Dashboard service
 - name: Enable Tyk dashboard service

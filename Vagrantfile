@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
      tyk_01.vm.box = "generic/rhel7"
      tyk_01.vm.network :"private_network", ip: "172.28.129.201", auto_config: true
      tyk_01.vm.network "forwarded_port", guest: 3000, host: 3000, protocol: "tcp"
+     tyk_01.vm.network "forwarded_port", guest: 8080, host: 8080, protocol: "tcp"
      tyk_01.vm.provider :virtualbox do |v|
        v.customize ["modifyvm", :id, "--memory", 1024]
        v.customize ["modifyvm", :id, "--cpus", "2"]
