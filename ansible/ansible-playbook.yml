@@ -1,0 +1,17 @@
+###
+### Set up tyk
+###
+
+- hosts:         tyk
+  remote_user:   vagrant
+  become:        true
+  become_user:   root
+  become_method: sudo
+  gather_facts:  true
+
+#  vars_files:
+#  - group_vars/all
+#  - group_vars/tls
+
+  roles:
+    - role: role_tyk
