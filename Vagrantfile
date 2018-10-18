@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
      keycloak_01.vm.synced_folder "./vagrant", "/vagrant"
      keycloak_01.vm.box = "generic/rhel7"
      keycloak_01.vm.network :"private_network", ip: "172.28.129.202", auto_config: true
-     keycloak_01.vm.network "forwarded_port", guest: 8080, host: 8080, protocol: "tcp"
+     # keycloak_01.vm.network "forwarded_port", guest: 8080, host: 8080, protocol: "tcp"
      keycloak_01.vm.provider :virtualbox do |v|
        v.customize ["modifyvm", :id, "--memory", 1024]
        v.customize ["modifyvm", :id, "--cpus", "2"]
