@@ -43,6 +43,6 @@
 - name: Enable Tyk gateway service
   service:
     name: tyk-gateway
-    state: start
+    state: started
     enabled: yes
     daemon_reload: yes
