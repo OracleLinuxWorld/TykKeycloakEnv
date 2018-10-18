@@ -14,4 +14,4 @@
 #  - group_vars/tls
 
   roles:
-    - role: role_tyk
+    - role: role_tyk-dashboard

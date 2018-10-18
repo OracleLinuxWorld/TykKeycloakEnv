@@ -1,9 +1,9 @@
-############################ TYK ###########################
+############################ TYK-Dashboard ###########################
 ###
-### TYK installation and configuration
+### TYK-Dashboard installation and configuration
 ###
 
-- name: Add Tyk repo
+- name: Add Tyk-Dashboard repo
   yum_repository:
     name: tyk_tyk-dashboard
     description: Tyk Repo
@@ -48,3 +48,11 @@
 ### Install Tyk dashboard
 - name: run Tyk dashboard setup script (hardcoded for now)
   shell: sudo /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=172.28.129.201 --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="172.28.129.201"
+
+### Enable Dashboard service
+- name: Enable Tyk dashboard service
+  service:
+    name: tyk-dashboard
+    state: start
+    enabled: yes
+    daemon_reload: yes
