@@ -16,3 +16,4 @@
   roles:
     - role: role_tyk-dashboard
     - role: role_tyk-pump
+    - role: role_tyk-gateway
