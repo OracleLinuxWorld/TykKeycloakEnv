@@ -3,7 +3,7 @@
 ### TYK-Pump installation and configuration
 ###
 
-- name: Add Tyk-Dashboard repo
+- name: Add Tyk-pump repo
   yum_repository:
     name: tyk_tyk-pump
     description: Tyk-Pump Repo
