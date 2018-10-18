@@ -31,6 +31,6 @@
 - name: Enable Tyk pump service
   service:
     name: tyk-pump
-    state: start
+    state: started
     enabled: yes
     daemon_reload: yes

@@ -53,6 +53,6 @@
 - name: Enable Tyk dashboard service
   service:
     name: tyk-dashboard
-    state: start
+    state: started
     enabled: yes
     daemon_reload: yes
