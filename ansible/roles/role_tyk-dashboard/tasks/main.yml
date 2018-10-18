@@ -34,7 +34,7 @@
     - tyk-dashboard
     - redis
 
-### Start sonarQube
+### Start databases
 - name: Enable mongo and redis services
   service:
     name: "{{ item }}"
