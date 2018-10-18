@@ -6,6 +6,7 @@
 - name: Add Tyk repo
   yum_repository:
     name: tyk_tyk-dashboard
+    description: Tyk Repo
     baseurl: https://packagecloud.io/tyk/tyk-dashboard/el/7/$basearch
     repo_gpgcheck: 1
     gpgcheck: 1
@@ -17,6 +18,7 @@
 - name: Add MongoDB repo
   yum_repository:
     name: MongoDB Repository
+    description: MongoDB repo
     baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.0/x86_64/
     gpgcheck: 0
     enabled: 1
