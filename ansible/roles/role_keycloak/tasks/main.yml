@@ -1,0 +1,25 @@
+############################ KeyCloak ###########################
+###
+### KeyCloak installation and configuration
+###
+
+- name: Create /app dir
+  file:
+    path: /app
+    state: directory
+    mode: 0755
+
+- name: Check KeyCloak is present
+    stat:
+      path: /app/keycloak-4.5.0.Final
+    register: keycloak_dir
+
+- name: Download and unzip KeyCloak
+  unarchive:
+    src: https://downloads.jboss.org/keycloak/4.5.0.Final/keycloak-4.5.0.Final.tar.gz
+    dest: /app
+    remote_src: yes
+  when: not keycloak_dir.stat.exists
+
+- name: Start server
+  shell: /app/keycloak-4.5.0.Final/bin/standalone.sh
