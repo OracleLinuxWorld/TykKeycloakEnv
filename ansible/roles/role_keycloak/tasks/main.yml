@@ -8,7 +8,7 @@
     state: present
     update_cache: yes
   with_items:
-    - openjdk-8-jre-headless
+    - java-1.8.0
 
 - name: Create /app dir
   file:
