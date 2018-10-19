@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
    config.vm.define "tyk_01" do |tyk_01|
      tyk_01.vm.synced_folder "./vagrant", "/vagrant"
-     tyk_01.vm.box = "generic/rhel7"
+     tyk_01.vm.box = "generic/oracle7"
      tyk_01.vm.network :"private_network", ip: "172.28.129.201", auto_config: true
      tyk_01.vm.network "forwarded_port", guest: 3000, host: 3000, protocol: "tcp"
      tyk_01.vm.network "forwarded_port", guest: 8081, host: 8081, protocol: "tcp"
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
 
    config.vm.define "keycloak_01" do |keycloak_01|
      keycloak_01.vm.synced_folder "./vagrant", "/vagrant"
-     keycloak_01.vm.box = "generic/rhel7"
+     keycloak_01.vm.box = "generic/oracle7"
      keycloak_01.vm.network :"private_network", ip: "172.28.129.202", auto_config: true
      keycloak_01.vm.network "forwarded_port", guest: 8080, host: 8080, protocol: "tcp"
      keycloak_01.vm.provider :virtualbox do |v|
@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
 
    config.vm.define "httpd_01" do |httpd_01|
      httpd_01.vm.synced_folder "./vagrant", "/vagrant"
-     httpd_01.vm.box = "generic/rhel7"
+     httpd_01.vm.box = "generic/oracle7"
      httpd_01.vm.network :"private_network", ip: "172.28.129.203", auto_config: true
      httpd_01.vm.network "forwarded_port", guest: 80, host: 80, protocol: "tcp"
      httpd_01.vm.provider :virtualbox do |v|
