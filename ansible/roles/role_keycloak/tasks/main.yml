@@ -3,7 +3,7 @@
 ### KeyCloak installation and configuration
 ###
 - name: Install prereqs
-  apt:
+  yum:
     name: "{{ item }}"
     state: present
     update_cache: yes
