@@ -9,8 +9,8 @@
   become_method: sudo
   gather_facts:  true
 
-#  vars_files:
-#  - group_vars/all
+  vars_files:
+  - group_vars/tyk
 #  - group_vars/tls
 
   roles:

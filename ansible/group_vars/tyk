@@ -1,7 +1,9 @@
-tyk_host:                 groups['tyk'][0]
+tyk_host:                 "{{ groups['tyk'][0] }}"
 
 tyk_dashboard_hostname:   tyk-dashboard.local
 tyk_dashboard_port:       3000
 
 tyk_portal_hostname:      tyk-protal.local
 tyk_portal_port:          8080
+
+license_key:		  secret

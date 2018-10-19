@@ -47,7 +47,7 @@
 
 ### Install Tyk dashboard
 - name: run Tyk dashboard setup script (hardcoded for now)
-  shell: /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="XXX.XXX.XXX.XXX"
+  shell: /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="127.0.0.1"
 
 ### Enable Dashboard service
 - name: Enable Tyk dashboard service
@@ -60,11 +60,12 @@
 ### Activate tyk dashboard license
 - name: Entering license key
   uri:
-    url: "{{ tyk_host }}:{{ tyk_dashboard_port }}/license"
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/license"
     method: POST
+    status_code: 200, 302
     headers:
       Content-type: "application/x-www-form-urlencoded"
-    body: "license="
+    body: "license={{ license_key }}"
 
 - name: Create initial user
-  shell: /opt/tyk-dashboard/install/bootstrap.sh XXX.XXX.XXX.XXX
+  shell: /opt/tyk-dashboard/install/bootstrap.sh 127.0.0.1
