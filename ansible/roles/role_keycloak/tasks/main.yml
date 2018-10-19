@@ -10,9 +10,9 @@
     mode: 0755
 
 - name: Check KeyCloak is present
-    stat:
-      path: /app/keycloak-4.5.0.Final
-    register: keycloak_dir
+  stat:
+    path: /app/keycloak-4.5.0.Final
+  register: keycloak_dir
 
 - name: Download and unzip KeyCloak
   unarchive:
