@@ -57,5 +57,14 @@
     enabled: yes
     daemon_reload: yes
 
+### Activate tyk dashboard license
+- name: Entering license key
+  uri:
+    url: "{{ tyk_host }}:{{ tyk_dashboard_port }}/license"
+    method: POST
+    headers:
+      Content-type: "application/x-www-form-urlencoded"
+    body: "license="
+
 - name: Create initial user
   shell: /opt/tyk-dashboard/install/bootstrap.sh XXX.XXX.XXX.XXX
