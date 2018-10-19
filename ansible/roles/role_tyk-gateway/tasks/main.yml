@@ -37,7 +37,7 @@
 
 ### Install Tyk gateway
 - name: run Tyk gateway setup script (hardcoded for now)
-  shell: /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport={{tyk_node_port}} --redishost=localhost --redisport=6379
+  shell: /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport={{tyk_portal_port}} --redishost=localhost --redisport=6379
 
 ### Enable Dashboard service
 - name: Enable Tyk gateway service
