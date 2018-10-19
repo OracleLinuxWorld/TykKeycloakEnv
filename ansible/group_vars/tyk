@@ -6,4 +6,4 @@ tyk_dashboard_port:       3000
 tyk_portal_hostname:      tyk-protal.local
 tyk_portal_port:          8081
 
-license_key:		  secret
+license_key:              secret
