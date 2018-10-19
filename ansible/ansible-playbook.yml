@@ -1,25 +1,7 @@
-###
-### Set up tyk
-###
+- import_playbook: ansible-playbook_tyk.yml
+  tags:
+    - tyk
 
-- hosts:         tyk
-  remote_user:   vagrant
-  become:        true
-  become_user:   root
-  become_method: sudo
-  gather_facts:  true
-
-  vars_files:
-  - group_vars/tyk
-#  - group_vars/tls
-
-  roles:
-    - role: role_tyk-dashboard
-      tags: tyk
-    - role: role_tyk-pump
-      tags: tyk
-    - role: role_tyk-gateway
-      tags: tyk
-
-    - role: role_keycloak
-      tags: keycloak
+- import_playbook: ansible-playbook_keycloak.yml
+  tags:
+    - keycloak
