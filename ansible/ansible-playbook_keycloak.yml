@@ -9,10 +9,5 @@
   become_method: sudo
   gather_facts:  true
 
-  vars_files:
-  - group_vars/tyk
-#  - group_vars/tls
-
   roles:
     - role: role_keycloak
-      tags: keycloak
