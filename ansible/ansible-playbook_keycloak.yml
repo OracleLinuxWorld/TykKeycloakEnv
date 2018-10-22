@@ -9,5 +9,8 @@
   become_method: sudo
   gather_facts:  true
 
+  vars_files:
+  - group_vars/keycloak
+
   roles:
     - role: role_keycloak
