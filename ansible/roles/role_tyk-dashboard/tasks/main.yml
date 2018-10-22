@@ -71,13 +71,13 @@
   uri:
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/license"
     method: POST
-    status_code: 200, 302
+    status_code: 302
     headers:
       Content-type: "application/x-www-form-urlencoded"
-      Upgrade-Insecure-Requests: "1"
+      Upgrade-Insecure-Requests: 1
       Accept-Encoding: "gzip, deflate"
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-    body: "license={{ license_key }}"
+    body: "license=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkX25vZGVzIjoiYWU2ZjgzZmQtOWU2NS00ODdhLTVhZjMtYmY5OGI3ODgzOTY2IiwiZXhwIjoxNTcxNDA1NjczLCJvd25lciI6IjViYzg4YmU5NDVmOTJlMDcxNDcyZGU0ZiJ9.lvMXeg4IQjXKf59qNMlI5miV17icNdj2_5-ryfx1RPiYkjLJgYMkh3C-791G8bmNUEGeq1U7-0eu1hXmP-o-jbt41WfO48jYCcZYchqUCJznyAuXo_6lt0VSCoMctkAXVM5ZP15PbKpuLXML3FiqgkTzAldMQ0Rikx072nbiI6Ms_QjXi83G-UEFnDCgVz5Z-lXDMRJ2uOwBdIfpjc4kq590F5dQVDHmXIp3li-SBMNaUTqA-RxjnCzmal_24Zy6HtsnWKnJ_VK-sHBfzRL-A3T8EcFDbbbSkYQXMZFfKFeQq5tWenTFrtVHqBkdyeyPIiEqB9PvJXXfeYgFgzt9hQ"
 
 - name: Create initial user
   shell: /opt/tyk-dashboard/install/bootstrap.sh 127.0.0.1
