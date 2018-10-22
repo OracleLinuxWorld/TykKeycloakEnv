@@ -15,11 +15,5 @@
 
   roles:
     - role: role_tyk-dashboard
-      tags: tyk
     - role: role_tyk-pump
-      tags: tyk
     - role: role_tyk-gateway
-      tags: tyk
-
-    - role: role_keycloak
-      tags: keycloak

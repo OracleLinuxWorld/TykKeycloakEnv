@@ -23,13 +23,22 @@
     gpgcheck: 0
     enabled: 1
 
-- name: Install prerequisites
+- name: Install extra yum repos
   yum:
     name: "{{ item }}"
     state: present
     update_cache: yes
   with_items:
-    - python34
+    - epel-release
+    - centos-release-scl
+
+- name: Install prerequisites 
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - rh-python34
     - mongodb-org
     - tyk-dashboard
     - redis

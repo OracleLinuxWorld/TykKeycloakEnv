@@ -29,4 +29,5 @@
   when: not keycloak_dir.stat.exists
 
 - name: Start server
-  shell: /app/keycloak-4.5.0.Final/bin/standalone.sh
+  shell: nohup /app/keycloak-4.5.0.Final/bin/standalone.sh -b=0.0.0.0 &
+ 
