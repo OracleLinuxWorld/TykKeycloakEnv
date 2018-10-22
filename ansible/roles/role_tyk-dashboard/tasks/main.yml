@@ -32,7 +32,7 @@
     - epel-release
     - centos-release-scl
 
-- name: Install prerequisites 
+- name: Install prerequisites
   yum:
     name: "{{ item }}"
     state: present
@@ -74,6 +74,9 @@
     status_code: 200, 302
     headers:
       Content-type: "application/x-www-form-urlencoded"
+      Upgrade-Insecure-Requests: "1"
+      Accept-Encoding: "gzip, deflate"
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     body: "license={{ license_key }}"
 
 - name: Create initial user
