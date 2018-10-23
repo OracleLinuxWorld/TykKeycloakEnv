@@ -50,7 +50,6 @@
 - name: Get API token
   uri:
     method: POST
-    body_format: json
     status_code: 201
     url: "http://{{ keycloak_host }}:8080/auth/realms/master/protocol/openid-connect/token"
     body: "client_id=admin-cli&username={{ kc_admin_user }}&password={{ kc_admin_pw }}&grant_type=password"
