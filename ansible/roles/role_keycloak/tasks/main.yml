@@ -63,7 +63,7 @@
     url: "http://{{ keycloak_host }}:8080/auth/admin/realms"
     body: "{{ lookup('template','templates/create_realm.json.j2') }}"
     headers:
-      authentication: "bearer {{ token.json.access_token}}"
+      Authorization: "bearer {{ token.json.access_token}}"
 
 - name: Create Client
   uri:
@@ -73,4 +73,4 @@
     url: "http://{{ keycloak_host }}:8080/auth/admin/realms/{{ realm_name }}/clients"
     body: "{{ lookup('template','templates/create_client.json.j2') }}"
     headers:
-      authentication: "bearer {{ token.json.access_token}}"
+      Authorization: "bearer {{ token.json.access_token}}"
