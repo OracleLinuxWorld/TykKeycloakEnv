@@ -64,10 +64,10 @@
     url: "http://{{ keycloak_host }}:8080/auth/admin/realms"
     body: "{{ lookup('template','templates/create_realm.json.j2') }}"
 
-  - name: Create Client
-    uri:
-      method: POST
-      body_format: json
-      status_code: 201
-      url: "http://{{ keycloak_host }}:8080/auth/admin/realms/{{ realm_name }}/clients"
-      body: "{{ lookup('template','templates/create_client.json.j2') }}"
+- name: Create Client
+  uri:
+    method: POST
+    body_format: json
+    status_code: 201
+    url: "http://{{ keycloak_host }}:8080/auth/admin/realms/{{ realm_name }}/clients"
+    body: "{{ lookup('template','templates/create_client.json.j2') }}"

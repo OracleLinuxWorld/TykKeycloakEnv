@@ -66,6 +66,7 @@
     enabled: yes
     daemon_reload: yes
 
+# TODO: check if tyk is up
 ### Activate tyk dashboard license
 - name: Entering license key
   uri:
