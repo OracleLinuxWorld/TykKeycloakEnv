@@ -11,6 +11,7 @@
 
   vars_files:
   - group_vars/keycloak
-
+  - group_vars/tyk
+  
   roles:
     - role: role_keycloak

@@ -1,2 +1,7 @@
 kc_admin_user:  admin
 kc_admin_pw:    password
+
+keycloak_host:  "{{ groups['keycloak'][0] }}"
+
+realm_name:     jetRealm
+client_name:    jetClient

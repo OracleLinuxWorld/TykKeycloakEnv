@@ -41,3 +41,33 @@
 
 - name: Start server
   shell: nohup /app/keycloak-4.5.0.Final/bin/standalone.sh -b=0.0.0.0 &
+
+- name: Wait for server to become available
+  wait_for:
+    port: 8080
+    delay: 5
+
+- name: Get API token
+  uri:
+    method: POST
+    body_format: json
+    status_code: 201
+    url: "http://{{ keycloak_host }}:8080/auth/realms/master/protocol/openid-connect/token"
+    body: "client_id=admin-cli&username={{ kc_admin_user }}&password={{ kc_admin_pw }}&grant_type=password"
+  register: token
+
+- name: Create Realm
+  uri:
+    method: POST
+    body_format: json
+    status_code: 201
+    url: "http://{{ keycloak_host }}:8080/auth/admin/realms"
+    body: "{{ lookup('template','templates/create_realm.json.j2') }}"
+
+  - name: Create Client
+    uri:
+      method: POST
+      body_format: json
+      status_code: 201
+      url: "http://{{ keycloak_host }}:8080/auth/admin/realms/{{ realm_name }}/clients"
+      body: "{{ lookup('template','templates/create_client.json.j2') }}"
