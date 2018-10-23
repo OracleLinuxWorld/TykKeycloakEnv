@@ -28,11 +28,11 @@
     remote_src: yes
   when: not keycloak_dir.stat.exists
 
-- name: Create admin user group
-  shell: "/app/keycloak-4.5.0.Final/bin/add-user.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
-
-- name: Create admin user
-  shell: "/app/keycloak-4.5.0.Final/bin/add-user-keycloak.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
+# - name: Create admin user group
+#   shell: "/app/keycloak-4.5.0.Final/bin/add-user.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
+#
+# - name: Create admin user
+#   shell: "/app/keycloak-4.5.0.Final/bin/add-user-keycloak.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
 
 - name: Template host-slave.xml (not sure if actually used)
   template:
@@ -50,7 +50,7 @@
 - name: Get API token
   uri:
     method: POST
-    status_code: 201
+    status_code: 200
     url: "http://{{ keycloak_host }}:8080/auth/realms/master/protocol/openid-connect/token"
     body: "client_id=admin-cli&username={{ kc_admin_user }}&password={{ kc_admin_pw }}&grant_type=password"
   register: token
@@ -62,6 +62,8 @@
     status_code: 201
     url: "http://{{ keycloak_host }}:8080/auth/admin/realms"
     body: "{{ lookup('template','templates/create_realm.json.j2') }}"
+    headers:
+      authentication: "bearer {{ token.json.access_token}}"
 
 - name: Create Client
   uri:
@@ -70,3 +72,5 @@
     status_code: 201
     url: "http://{{ keycloak_host }}:8080/auth/admin/realms/{{ realm_name }}/clients"
     body: "{{ lookup('template','templates/create_client.json.j2') }}"
+    headers:
+      authentication: "bearer {{ token.json.access_token}}"
