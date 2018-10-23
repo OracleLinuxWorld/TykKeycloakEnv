@@ -28,11 +28,11 @@
     remote_src: yes
   when: not keycloak_dir.stat.exists
 
-# - name: Create admin user group
-#   shell: "/app/keycloak-4.5.0.Final/bin/add-user.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
-#
-# - name: Create admin user
-#   shell: "/app/keycloak-4.5.0.Final/bin/add-user-keycloak.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
+- name: Create admin user group
+  shell: "/app/keycloak-4.5.0.Final/bin/add-user.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
+
+- name: Create admin user
+  shell: "/app/keycloak-4.5.0.Final/bin/add-user-keycloak.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
 
 - name: Template host-slave.xml (not sure if actually used)
   template:
@@ -74,3 +74,5 @@
     body: "{{ lookup('template','templates/create_client.json.j2') }}"
     headers:
       Authorization: "bearer {{ token.json.access_token}}"
+
+### Users can register themselves trough the authenticator
