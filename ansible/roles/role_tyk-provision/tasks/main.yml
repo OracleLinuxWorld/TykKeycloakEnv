@@ -33,7 +33,7 @@
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/users/{{ admin.json.Meta.id}}/actions/reset"
     body: "{{ lookup('template','templates/03-set_admin_pw.json.j2') }}"
     headers:
-      Authorization: {{ admin.json.Message }}
+      Authorization: "{{ admin.json.Message }}"
 
 - name: Create initial API
   uri:
@@ -43,7 +43,7 @@
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/apis"
     body: "{{ lookup('template','templates/04-create_api.json.j2') }}"
     headers:
-      Authorization: {{ admin.json.Message }}
+      Authorization: "{{ admin.json.Message }}"
     register: api
 
 - name: Create Policy
@@ -54,7 +54,7 @@
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/portal/policies/"
     body: "{{ lookup('template','templates/05-policy.json.j2') }}"
     headers:
-      Authorization: {{ admin.json.Message }}
+      Authorization: "{{ admin.json.Message }}"
     register: policy
 
 - name: Update Api
@@ -65,7 +65,7 @@
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/apis/{{ api.json.Meta}}"
     body: "{{ lookup('template','templates/06-update_api.json.j2') }}"
     headers:
-      Authorization: {{ admin.json.Message }}
+      Authorization: "{{ admin.json.Message }}"
 
 - name: Restarting Tyk services
   service:
