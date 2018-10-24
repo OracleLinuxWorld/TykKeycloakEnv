@@ -12,7 +12,7 @@
     body: "{{ lookup('template','templates/01-create_org.json.j2') }}"
     headers:
       admin-auth: "12345"
-    register: org
+  register: org
 
 - name: Create admin user
   uri:
@@ -23,7 +23,7 @@
     body: "{{ lookup('template','templates/02-create_admin.json.j2') }}"
     headers:
       admin-auth: "12345"
-    register: admin
+  register: admin
 
 - name: Create admin user
   uri:
@@ -44,7 +44,7 @@
     body: "{{ lookup('template','templates/04-create_api.json.j2') }}"
     headers:
       Authorization: "{{ admin.json.Message }}"
-    register: api
+  register: api
 
 - name: Create Policy
   uri:
@@ -55,7 +55,7 @@
     body: "{{ lookup('template','templates/05-policy.json.j2') }}"
     headers:
       Authorization: "{{ admin.json.Message }}"
-    register: policy
+  register: policy
 
 - name: Update Api
   uri:
