@@ -9,7 +9,7 @@
     body_format: json
     status_code: 200
     url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/admin/organisations"
-    body: "{{ lookup('template','templates/01_create_org.json.j2') }}"
+    body: "{{ lookup('template','templates/01-create_org.json.j2') }}"
     headers:
       admin-auth: "12345"
     register: org
