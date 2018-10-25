@@ -55,7 +55,7 @@
     - redis
 
 ### Install Tyk dashboard
-- name: run Tyk dashboard setup script (hardcoded for now)
+- name: run Tyk dashboard setup script
   shell: "/opt/tyk-dashboard/install/setup.sh --listenport={{tyk_dashboard_port}} --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port={{tyk_portal_port}} --portal_root=/portal --domain='127.0.0.1'"
 
 ### Enable Dashboard service
@@ -79,6 +79,3 @@
       Accept-Encoding: "gzip, deflate"
       Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     body: "license=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkX25vZGVzIjoiYWU2ZjgzZmQtOWU2NS00ODdhLTVhZjMtYmY5OGI3ODgzOTY2IiwiZXhwIjoxNTcxNDA1NjczLCJvd25lciI6IjViYzg4YmU5NDVmOTJlMDcxNDcyZGU0ZiJ9.lvMXeg4IQjXKf59qNMlI5miV17icNdj2_5-ryfx1RPiYkjLJgYMkh3C-791G8bmNUEGeq1U7-0eu1hXmP-o-jbt41WfO48jYCcZYchqUCJznyAuXo_6lt0VSCoMctkAXVM5ZP15PbKpuLXML3FiqgkTzAldMQ0Rikx072nbiI6Ms_QjXi83G-UEFnDCgVz5Z-lXDMRJ2uOwBdIfpjc4kq590F5dQVDHmXIp3li-SBMNaUTqA-RxjnCzmal_24Zy6HtsnWKnJ_VK-sHBfzRL-A3T8EcFDbbbSkYQXMZFfKFeQq5tWenTFrtVHqBkdyeyPIiEqB9PvJXXfeYgFgzt9hQ"
-
-# - name: Create initial user
-#   shell: /opt/tyk-dashboard/install/bootstrap.sh 127.0.0.1

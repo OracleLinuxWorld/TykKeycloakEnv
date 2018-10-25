@@ -21,7 +21,6 @@
     state: present
     update_cache: yes
   with_items:
-#    - epel-release
     - redis
     - tyk-gateway
 
