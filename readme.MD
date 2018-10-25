@@ -10,10 +10,14 @@ TO BE COMPLETED
 The below deployment instructions are based upon two possible models. The first is a generic Ansible based deployment which can be used on a generic server while the second deployment model is based upon a local Vagrant deployment where a developer would require the combination of Tyk and Keycloak to run on his local machine.
 
 ### generic Ansible deployment
-TO BE COMPLETED
+```
+ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml
+```
 
 ### local vagrant deployment
-TO BE COMPLETED
+```
+vagrant up
+ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml```
 
 ## background information
 * [Keycloak background information](./doc/background/keycloak.md)
