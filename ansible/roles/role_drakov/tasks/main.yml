@@ -1,0 +1,22 @@
+- name: Install prerequisites
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - gcc-c++
+    - make
+
+- name: download npm
+  get_url:
+    url: https://rpm.nodesource.com/setup_11.x
+    dest: /tmp/setup_11.x
+    mode: 0755
+
+- name: Install npm
+  shell: /tmp/setup_11.x
+
+- name: Install drakov
+  npm:
+      name: drakov
+      path: /app/drakov
