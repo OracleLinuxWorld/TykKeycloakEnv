@@ -1,5 +1,5 @@
 ###
-### Set up tyk
+### Set up keycloak
 ###
 
 - hosts:         keycloak
@@ -12,6 +12,6 @@
   vars_files:
   - group_vars/keycloak
   - group_vars/tyk
-  
+
   roles:
     - role: role_keycloak
