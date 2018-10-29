@@ -15,7 +15,7 @@
   with_items:
     - gcc-c++
     - make
-    - npm
+    - nodejs
 
 - name: Install drakov
   npm:

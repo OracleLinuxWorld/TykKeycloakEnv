@@ -34,7 +34,7 @@
 - name: Create admin user
   shell: "/app/keycloak-4.5.0.Final/bin/add-user-keycloak.sh -u {{ kc_admin_user }} -p {{ kc_admin_pw }}"
 
-- name: Template host-slave.xml (not sure if actually used)
+- name: Template host-slave.xml
   template:
     src: templates/host-slave.xml.j2
     dest: "/app/keycloak-4.5.0.Final/domain/configuration/host-slave.xml"
