@@ -4,5 +4,5 @@
 [keycloak]
 172.28.129.202 ansible_host=172.28.129.202 ansible_port=22 ansible_user='vagrant' ansible_ssh_private_key_file='~/TykKeycloakEnv/.vagrant/machines/keycloak_01/virtualbox/private_key' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
-[keycloak]
+[drakov]
 172.28.129.203 ansible_host=172.28.129.203 ansible_port=22 ansible_user='vagrant' ansible_ssh_private_key_file='~/TykKeycloakEnv/.vagrant/machines/httpd_01/virtualbox/private_key' ansible_ssh_common_args='-o StrictHostKeyChecking=no'
