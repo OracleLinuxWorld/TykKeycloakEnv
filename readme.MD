@@ -17,7 +17,8 @@ ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml
 ### local vagrant deployment
 ```
 vagrant up
-ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml```
+ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml
+```
 
 ## background information
 * [Keycloak background information](./doc/background/keycloak.md)
