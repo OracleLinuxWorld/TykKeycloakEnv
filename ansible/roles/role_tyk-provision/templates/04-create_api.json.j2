@@ -1,0 +1,72 @@
+{
+	"api_definition": {
+    "api_id": "12345",
+		"name": "jetAPI",
+		"slug": "jetapi",
+		"org_id": "{{ org.json.Meta }}",
+		"active": true,
+		"auth": {
+      "auth_header_name": "authorization"
+    },
+    "use_basic_auth": false,
+		"use_openid": true,
+		"openid_options": {
+			"providers": [
+				{
+					"issuer": "http://192.168.137.225:8080/auth/realms/jetRealm",
+					"client_ids": {
+						"amV0Q2xpZW50": "5bd03947e13823134a9e827d"
+					}
+				}
+			],
+			"segregate_by_client": false
+		},
+		"definition": {
+			"location": "header",
+			"key": "x-api-version",
+			"strip_path": false
+		},
+		"version_data": {
+			"not_versioned": true,
+			"default_version": "",
+			"versions": {
+				"Default": {
+					"name": "Default",
+					"expires": "",
+					"paths": {
+						"ignored": [],
+						"white_list": [],
+						"black_list": []
+					},
+					"use_extended_paths": true,
+					"extended_paths": {},
+					"global_headers": {},
+					"global_headers_remove": [],
+					"global_size_limit": 0,
+					"override_target": ""
+				}
+			}
+		},
+		"proxy": {
+			"preserve_host_header": false,
+			"listen_path": "/jetapi/",
+			"target_url": "https://jsonplaceholder.typicode.com/",
+			"strip_listen_path": true,
+			"enable_load_balancing": false,
+			"target_list": [],
+			"check_host_against_uptime_tests": false,
+			"service_discovery": {
+				"use_discovery_service": false,
+				"query_endpoint": "",
+				"use_nested_query": false,
+				"parent_data_path": "",
+				"data_path": "",
+				"port_data_path": "",
+				"target_path": "",
+				"use_target_list": false,
+				"cache_timeout": 0,
+				"endpoint_returns_list": false
+			}
+		}
+	}
+}

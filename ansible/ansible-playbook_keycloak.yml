@@ -1,0 +1,17 @@
+###
+### Set up keycloak
+###
+
+- hosts:         keycloak
+  remote_user:   vagrant
+  become:        true
+  become_user:   root
+  become_method: sudo
+  gather_facts:  true
+
+  vars_files:
+  - group_vars/keycloak
+  - group_vars/tyk
+
+  roles:
+    - role: role_keycloak

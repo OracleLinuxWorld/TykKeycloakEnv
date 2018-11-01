@@ -1,0 +1,89 @@
+############################ TYK-Provision ###########################
+###
+### Creates users and initial gateways to use
+###
+
+- name: Create Org
+  uri:
+    method: POST
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/admin/organisations"
+    body: "{{ lookup('template','templates/01-create_org.json.j2') }}"
+    headers:
+      admin-auth: "12345"
+  register: org
+
+- name: Create admin user
+  uri:
+    method: POST
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/admin/users"
+    body: "{{ lookup('template','templates/02-create_admin.json.j2') }}"
+    headers:
+      admin-auth: "12345"
+  register: admin
+
+- name: Create admin user
+  uri:
+    method: POST
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/users/{{ admin.json.Meta.id}}/actions/reset"
+    body: "{{ lookup('template','templates/03-set_admin_pw.json.j2') }}"
+    headers:
+      Authorization: "{{ admin.json.Message }}"
+
+- name: Create initial API
+  uri:
+    method: POST
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/apis"
+    body: "{{ lookup('template','templates/04-create_api.json.j2') }}"
+    headers:
+      Authorization: "{{ admin.json.Message }}"
+  register: api
+
+- name: Reset API-id
+  uri:
+    method: PUT
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/apis/{{ api.json.Meta}}"
+    body: "{{ lookup('template','templates/04-create_api.json.j2') }}"
+    headers:
+      Authorization: "{{ admin.json.Message }}"
+
+- name: Create Policy
+  uri:
+    method: POST
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/portal/policies/"
+    body: "{{ lookup('template','templates/05-create_policy.json.j2') }}"
+    headers:
+      Authorization: "{{ admin.json.Message }}"
+  register: policy
+
+- name: Update Api
+  uri:
+    method: PUT
+    body_format: json
+    status_code: 200
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/api/apis/{{ api.json.Meta}}"
+    body: "{{ lookup('template','templates/06-update_api.json.j2') }}"
+    headers:
+      Authorization: "{{ admin.json.Message }}"
+
+- name: Restarting Tyk services
+  service:
+    name: "{{ item }}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  with_items:
+    - tyk-dashboard
+    - tyk-gateway
+    - tyk-pump

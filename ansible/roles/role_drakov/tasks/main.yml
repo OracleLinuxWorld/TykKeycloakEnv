@@ -1,0 +1,23 @@
+- name: download npm setup script
+  get_url:
+    url: https://rpm.nodesource.com/setup_11.x
+    dest: /tmp/setup_11.x
+    mode: 0755
+
+- name: Execute setup script
+  shell: /tmp/setup_11.x
+
+- name: Install npm and prerequisites
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - gcc-c++
+    - make
+    - nodejs
+
+- name: Install drakov
+  npm:
+      name: drakov
+      global: yes

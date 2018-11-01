@@ -1,0 +1,81 @@
+############################ TYK-Dashboard ###########################
+###
+### TYK-Dashboard installation and configuration
+###
+
+- name: Add Tyk-Dashboard repo
+  yum_repository:
+    name: tyk_tyk-dashboard
+    description: Tyk-dashboard Repo
+    baseurl: https://packagecloud.io/tyk/tyk-dashboard/el/7/$basearch
+    repo_gpgcheck: 1
+    gpgcheck: 1
+    gpgkey:
+      - http://keyserver.tyk.io/tyk.io.rpm.signing.key
+      - https://packagecloud.io/tyk/tyk-dashboard/gpgkey
+    enabled: 1
+
+- name: Add MongoDB repo
+  yum_repository:
+    name: MongoDB_Repository
+    description: MongoDB repo
+    baseurl: https://repo.mongodb.org/yum/redhat/7Server/mongodb-org/3.0/x86_64/
+    gpgcheck: 0
+    enabled: 1
+
+- name: Install extra yum repos
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - epel-release
+    - centos-release-scl
+
+- name: Install prerequisites
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - rh-python34
+    - mongodb-org
+    - tyk-dashboard
+    - redis
+
+### Start databases
+- name: Enable mongo and redis services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  with_items:
+    - mongod
+    - redis
+
+### Install Tyk dashboard
+- name: run Tyk dashboard setup script
+  shell: "/opt/tyk-dashboard/install/setup.sh --listenport={{tyk_dashboard_port}} --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port={{tyk_portal_port}} --portal_root=/portal --domain='127.0.0.1'"
+
+### Enable Dashboard service
+- name: Enable Tyk dashboard service
+  service:
+    name: tyk-dashboard
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+# TODO: check if tyk is up
+### Activate tyk dashboard license
+- name: Entering license key
+  uri:
+    url: "http://{{ tyk_host }}:{{ tyk_dashboard_port }}/license"
+    method: POST
+    status_code: 302
+    headers:
+      Content-type: "application/x-www-form-urlencoded"
+      Upgrade-Insecure-Requests: 1
+      Accept-Encoding: "gzip, deflate"
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    body: "license=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhbGxvd2VkX25vZGVzIjoiYWU2ZjgzZmQtOWU2NS00ODdhLTVhZjMtYmY5OGI3ODgzOTY2IiwiZXhwIjoxNTcxNDA1NjczLCJvd25lciI6IjViYzg4YmU5NDVmOTJlMDcxNDcyZGU0ZiJ9.lvMXeg4IQjXKf59qNMlI5miV17icNdj2_5-ryfx1RPiYkjLJgYMkh3C-791G8bmNUEGeq1U7-0eu1hXmP-o-jbt41WfO48jYCcZYchqUCJznyAuXo_6lt0VSCoMctkAXVM5ZP15PbKpuLXML3FiqgkTzAldMQ0Rikx072nbiI6Ms_QjXi83G-UEFnDCgVz5Z-lXDMRJ2uOwBdIfpjc4kq590F5dQVDHmXIp3li-SBMNaUTqA-RxjnCzmal_24Zy6HtsnWKnJ_VK-sHBfzRL-A3T8EcFDbbbSkYQXMZFfKFeQq5tWenTFrtVHqBkdyeyPIiEqB9PvJXXfeYgFgzt9hQ"

@@ -1,0 +1,36 @@
+############################ TYK-Pump ###########################
+###
+### TYK-Pump installation and configuration
+###
+
+- name: Add Tyk-pump repo
+  yum_repository:
+    name: tyk_tyk-pump
+    description: Tyk-Pump Repo
+    baseurl: https://packagecloud.io/tyk/tyk-pump/el/7/$basearch
+    repo_gpgcheck: 1
+    gpgcheck: 1
+    gpgkey:
+      - http://keyserver.tyk.io/tyk.io.rpm.signing.key
+      - https://packagecloud.io/tyk/tyk-pump/gpgkey
+    enabled: 1
+
+- name: Install prerequisites
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - tyk-pump
+
+### Install Tyk pump
+- name: run Tyk pump setup script (hardcoded for now)
+  shell: /opt/tyk-pump/install/setup.sh --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics
+
+### Enable Dashboard service
+- name: Enable Tyk pump service
+  service:
+    name: tyk-pump
+    state: started
+    enabled: yes
+    daemon_reload: yes

@@ -1,0 +1,18 @@
+- hosts:         tyk, keycloak
+  remote_user:   vagrant
+  become:        true
+  become_user:   root
+  become_method: sudo
+  gather_facts:  true
+
+- import_playbook: ansible-playbook_tyk.yml
+  tags:
+    - tyk
+
+- import_playbook: ansible-playbook_keycloak.yml
+  tags:
+    - keycloak
+
+- import_playbook: ansible-playbook_drakov.yml
+  tags:
+    - drakov

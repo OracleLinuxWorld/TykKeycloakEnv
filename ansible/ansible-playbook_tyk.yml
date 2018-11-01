@@ -1,0 +1,20 @@
+###
+### Set up tyk
+###
+
+- hosts:         tyk
+  remote_user:   vagrant
+  become:        true
+  become_user:   root
+  become_method: sudo
+  gather_facts:  true
+
+  vars_files:
+  - group_vars/tyk
+
+  roles:
+    - role: role_tyk-dashboard
+    - role: role_tyk-pump
+    - role: role_tyk-gateway
+    - role: role_tyk-provision
+      tags: tyk-provision
