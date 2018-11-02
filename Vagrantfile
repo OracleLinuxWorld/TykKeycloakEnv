@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
      httpd_01.vm.synced_folder "./vagrant", "/vagrant"
      httpd_01.vm.box = "centos/7"
      httpd_01.vm.network :"private_network", ip: "172.28.129.203", auto_config: true
-     httpd_01.vm.network "forwarded_port", guest: 80, host: 80, protocol: "tcp"
+     httpd_01.vm.network "forwarded_port", guest: 3001, host: 3001, protocol: "tcp"
      httpd_01.vm.provider :virtualbox do |v|
        v.customize ["modifyvm", :id, "--memory", 1024]
        v.customize ["modifyvm", :id, "--cpus", "2"]

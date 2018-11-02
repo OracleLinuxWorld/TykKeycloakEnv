@@ -22,3 +22,6 @@ ansible-playbook -i ansible/inventory/hosts ansible/ansible-playbook.yml
 
 ## background information
 * [Keycloak background information](./doc/background/keycloak.md)
+
+## basic usage tutorial
+* [Basic usage tutorial](./doc/tutorial/tutorial.md)
