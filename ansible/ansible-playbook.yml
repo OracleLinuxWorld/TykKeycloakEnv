@@ -13,6 +13,6 @@
   tags:
     - keycloak
 
-- import_playbook: ansible-playbook_drakov.yml
-  tags:
-    - drakov
+# - import_playbook: ansible-playbook_drakov.yml
+#   tags:
+#     - drakov
