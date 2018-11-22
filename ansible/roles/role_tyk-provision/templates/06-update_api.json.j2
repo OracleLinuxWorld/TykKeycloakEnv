@@ -13,7 +13,7 @@
 		"openid_options": {
 			"providers": [
 				{
-					"issuer": "http://192.168.137.225:8080/auth/realms/jetRealm",
+					"issuer": "http://{{ keycloak_host }}:8080/auth/realms/jetRealm",
 					"client_ids": {
 						"amV0Q2xpZW50": "{{ policy.json.Message}}"
 					}
